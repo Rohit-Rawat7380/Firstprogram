@@ -1,0 +1,29 @@
+int summation(vector<int> &array, int k)
+{ int sum=0 ;
+  for(int i=0 ; i<array.size() ; i++)
+  {
+    sum = sum+ceil( array[i]/k ) ;
+  }
+  return sum ;
+}
+int smallest_divisor(vector<int> &arr, int threshold)
+{
+  int low = 0 , high = arr.size()-1 , mid ;
+  while(low<=high)
+  {
+    mid = (low+high)/2 ;
+    if( summation(arr,mid) < threshold ) 
+    {// return(mid+1) ;
+      high = mid-1 ;
+     }
+    else
+       low = mid+1 ; 
+  }
+  return low ;
+}  
+int main()
+{
+ vector<int> array = {1,2,5,9} ;
+ cout<<smallest_divisor(array,6) ;  // ans = 4
+ return 0 ;
+}
